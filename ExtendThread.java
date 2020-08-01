@@ -4,7 +4,6 @@
  *
  * Distributed under terms of the MIT license.
  */
-
 public class ExtendThread extends Thread
 {
     public void run() {
