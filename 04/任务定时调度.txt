@@ -1,0 +1,5 @@
+通过Timer和TimeTask，我们可以实现定时启动某个线程
+
+java.util.Timer类似闹钟功能，本身实现是一个线程
+
+java.util.TimerTask一个抽象类，该类实现了Runnable接口，所以该类具备多线程能力
