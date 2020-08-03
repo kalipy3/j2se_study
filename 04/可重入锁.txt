@@ -1,0 +1,27 @@
+大多数锁都是可重入的，也就是说，如果某个线程试图获取一个已经由它自己持有的锁时，那么这个请求会立刻成功，并且将这个锁的计数值加1，而当线程退出同步代码块时，计数器将会递减，当计数值为0时，锁释放。如果没有可重入锁的支持，在第二次企图获得锁时将会进入失锁状态，可重入锁随处可见,如：
+
+eg1:
+//第一次获得锁
+sysnchronized(this) {
+    while(true) {
+        //第二次获取同样的锁
+        sysnchronized(this) {
+
+        }
+    }
+}
+
+eg2:
+class A {
+    public synchronized void a() {
+
+    }
+    public synchronized void b() {
+
+    }
+
+    public synchronized void all() {
+        this.a();//此时锁的计数值已经达到2了
+        this.b();
+    }
+}

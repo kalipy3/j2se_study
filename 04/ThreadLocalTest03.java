@@ -10,13 +10,16 @@ public class ThreadLocalTest03 {
     private static ThreadLocal<Integer> threadLocal = ThreadLocal.withInitial(()->{
         return 300;
     });
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InterruptedException {
         System.out.println(Thread.currentThread().getName()+"-->"+threadLocal.get());
         //设置值
         threadLocal.set(99);
         System.out.println(Thread.currentThread().getName()+"-->"+threadLocal.get());
 
-        new Thread(new MyRun()).start();
+        Thread t = new Thread(new MyRun());
+        t.start();
+        t.join();
+        System.out.println(Thread.currentThread().getName()+"-->"+threadLocal.get());
         
     }
 
